@@ -5,7 +5,10 @@ public record Sku
 {
     private const int DefaultLength = 8;
 
-    private Sku(string value) => Value = value;
+    private Sku(string value)
+    {
+        Value = value;
+    }
 
     public string Value { get; init; }
 

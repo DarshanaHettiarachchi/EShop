@@ -16,21 +16,19 @@ namespace Infastructure.Services
 
         public async Task<OrderedProduct> GetOrderedProduct(Guid id)
         {
-            var url = $"https://localhost:7099/products/{id}";
+            var url = $"https://localhost:7001/products/{id}";
             var Uri = new Uri(url);
 
             var httpClient = _httpClientFactory.CreateClient();
 
-            using (var response = await httpClient.GetAsync(Uri, HttpCompletionOption.ResponseHeadersRead))
-            {
-                response.EnsureSuccessStatusCode();
-                var stream = await response.Content.ReadAsStreamAsync();
-                httpClient.Dispose();
+            using var response = await httpClient.GetAsync(Uri, HttpCompletionOption.ResponseHeadersRead);
+            response.EnsureSuccessStatusCode();
+            var stream = await response.Content.ReadAsStreamAsync();
+            httpClient.Dispose();
 
 #pragma warning disable CS8603 // Possible null reference return.
-                return await JsonSerializer.DeserializeAsync<OrderedProduct>(stream, _options);
+            return await JsonSerializer.DeserializeAsync<OrderedProduct>(stream, _options);
 #pragma warning restore CS8603 // Possible null reference return.
-            }
 
         }
     }

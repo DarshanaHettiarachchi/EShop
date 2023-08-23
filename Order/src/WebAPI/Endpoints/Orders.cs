@@ -4,6 +4,7 @@ using Application.Orders.RemoveLineItem;
 using Carter;
 using Domain.Orders;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using SharedKernel;
 
 namespace Web.API.Endpoints;
@@ -21,7 +22,7 @@ public class Orders : ICarterModule
             return Results.Ok();
         });
 
-        app.MapPost("orders/add-product", async (Guid id, ISender sender) =>
+        app.MapPost("orders/add-product", async ([FromBody] Guid id, ISender sender) =>
         {
             var command = new AddProductCommand(new ProductId(id));
 
