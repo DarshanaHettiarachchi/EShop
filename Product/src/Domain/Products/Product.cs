@@ -18,6 +18,7 @@ public class Product
 
     public ProductId Id { get; private set; }
 
+    //Handle as a value Obj
     public string Name { get; private set; } = string.Empty;
 
     public Money Price { get; private set; }

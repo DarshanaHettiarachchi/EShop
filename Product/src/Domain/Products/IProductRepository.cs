@@ -9,4 +9,6 @@ public interface IProductRepository
     void Update(Product product);
 
     void Remove(Product product);
+
+    Task<bool> IsSKUUnique(Sku sku);
 }
