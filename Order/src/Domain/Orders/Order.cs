@@ -29,7 +29,7 @@ public class Order : Entity
         return order;
     }
 
-    public void Add(ProductId productId, Money price)
+    public Order Add(ProductId productId, Money price)
     {
         var lineItem = new LineItem(
             new LineItemId(Guid.NewGuid()),
@@ -38,24 +38,27 @@ public class Order : Entity
             price);
 
         _lineItems.Add(lineItem);
+
+        return this;
     }
 
-    public void RemoveLineItem(LineItemId lineItemId, IOrderRepository orderRepository)
+    public Order RemoveLineItem(LineItemId lineItemId, IOrderRepository orderRepository)
     {
         if (orderRepository.HasOneLineItem(this))
         {
-            return;
+            return this;
         }
 
         var lineItem = _lineItems.FirstOrDefault(li => li.Id == lineItemId);
 
         if (lineItem is null)
         {
-            return;
+            return this;
         }
 
         _lineItems.Remove(lineItem);
 
         Raise(new LineItemRemovedDomainEvent(Guid.NewGuid(), Id, lineItem.Id));
+        return this;
     }
 }
