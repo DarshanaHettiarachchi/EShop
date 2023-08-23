@@ -14,7 +14,7 @@ namespace Infastructure.Services
             _options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         }
 
-        public async Task<OrderedProduct> GetOrderedProduct(Guid id)
+        public async Task<OrderedProduct?> GetOrderedProduct(Guid id)
         {
             var url = $"https://localhost:7001/products/{id}";
             var Uri = new Uri(url);
@@ -26,9 +26,7 @@ namespace Infastructure.Services
             var stream = await response.Content.ReadAsStreamAsync();
             httpClient.Dispose();
 
-#pragma warning disable CS8603 // Possible null reference return.
             return await JsonSerializer.DeserializeAsync<OrderedProduct>(stream, _options);
-#pragma warning restore CS8603 // Possible null reference return.
 
         }
     }

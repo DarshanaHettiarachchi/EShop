@@ -33,7 +33,12 @@ internal sealed class AddProductCommandHandler : IRequestHandler<AddProductComma
 
         var order = Order.Create();
 
-        OrderedProduct product = await _orderedProductService.GetOrderedProduct(request.ProductId.Value);
+        OrderedProduct? product = await _orderedProductService.GetOrderedProduct(request.ProductId.Value);
+
+        if (product == null)
+        {
+            throw new InvalidOperationException($"No such Product {request.ProductId.Value}");
+        }
 
         order.Add(request.ProductId, new Money(product.Currency, product.Amount));
 

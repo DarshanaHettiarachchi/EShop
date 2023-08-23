@@ -18,6 +18,7 @@ internal sealed class GetProductQueryHandler : IRequestHandler<GetProductQuery, 
     {
         var product = await _context
             .Products
+            .AsNoTracking()
             .Where(p => p.Id == request.ProductId)
             .Select(p => new ProductResponse(
                 p.Id.Value,
