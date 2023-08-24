@@ -44,7 +44,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedKernel", "Shared\Shar
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APIGateway", "APIGateway", "{D6A17E9D-E661-468B-89AD-B39D8F79B275}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway", "APIGateway\Gateway\Gateway.csproj", "{CC6F9AE7-9DF5-4E92-87B2-10ABD5BA420F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway", "APIGateway\Gateway\Gateway.csproj", "{CC6F9AE7-9DF5-4E92-87B2-10ABD5BA420F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.UnitTests", "Order\test\Application.UnitTests\Application.UnitTests.csproj", "{6C7ECBD7-EB20-4393-9AFA-CD1D5C013140}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -92,6 +94,10 @@ Global
 		{CC6F9AE7-9DF5-4E92-87B2-10ABD5BA420F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC6F9AE7-9DF5-4E92-87B2-10ABD5BA420F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC6F9AE7-9DF5-4E92-87B2-10ABD5BA420F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C7ECBD7-EB20-4393-9AFA-CD1D5C013140}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C7ECBD7-EB20-4393-9AFA-CD1D5C013140}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C7ECBD7-EB20-4393-9AFA-CD1D5C013140}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C7ECBD7-EB20-4393-9AFA-CD1D5C013140}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -111,6 +117,7 @@ Global
 		{D5531E7B-CC9F-4AE6-AB88-B39E53F7A0B8} = {F71051C0-80B3-4C08-95E9-66A6E64FC9E9}
 		{F927CB7B-5E7A-4C96-A4C5-D543C45C1B85} = {9211493B-2C58-456E-885D-8DB28FD7296F}
 		{CC6F9AE7-9DF5-4E92-87B2-10ABD5BA420F} = {D6A17E9D-E661-468B-89AD-B39D8F79B275}
+		{6C7ECBD7-EB20-4393-9AFA-CD1D5C013140} = {A524FB3D-988A-4549-8F14-8CF7E38A571D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4AF42088-CE58-451F-BE8D-C88E8515B600}

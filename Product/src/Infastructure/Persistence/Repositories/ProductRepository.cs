@@ -33,7 +33,7 @@ internal sealed class ProductRepository : IProductRepository
         _context.Products.Remove(product);
     }
 
-    public async Task<bool> IsSKUUnique(Sku sku)
+    public async Task<bool> IsSKUUnique(Sku? sku)
     {
         return !await _context.Products.AnyAsync(product => product.Sku == sku);
     }

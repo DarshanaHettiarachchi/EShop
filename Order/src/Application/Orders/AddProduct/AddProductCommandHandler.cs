@@ -1,5 +1,5 @@
-﻿using Application.Data;
-using Application.Interfaces;
+﻿using Application.Common.Interfaces;
+using Application.Data;
 using Application.Models;
 using Domain.Orders;
 using MediatR;
@@ -41,7 +41,14 @@ internal sealed class AddProductCommandHandler : IRequestHandler<AddProductComma
 
         _orderRepository.Add(order);
 
-        _orderSummaryRepository.Add(new OrderSummary(order.Id.Value, product.Amount));
+        var discountedPrice = product.Amount;
+
+        if (product.Amount > 500)
+        {
+            discountedPrice = product.Amount - (product.Amount / 100) * 3;
+        }
+
+        _orderSummaryRepository.Add(new OrderSummary(order.Id.Value, discountedPrice));
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }

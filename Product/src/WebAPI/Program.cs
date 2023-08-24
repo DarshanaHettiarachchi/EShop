@@ -2,6 +2,7 @@ using Application;
 using Carter;
 using Infrastructure;
 using Serilog;
+using Web.API.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +36,8 @@ app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 app.MapControllers();
 

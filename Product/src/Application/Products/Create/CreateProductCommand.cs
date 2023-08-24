@@ -1,4 +1,4 @@
-﻿using MediatR;
+﻿using Application.Common.Interfaces.Messaging;
 
 namespace Application.Products.Create;
 
@@ -6,4 +6,4 @@ public record CreateProductCommand(
     string Name,
     string Sku,
     string Currency,
-    decimal Amount) : IRequest;
+    decimal Amount) : ICommand;

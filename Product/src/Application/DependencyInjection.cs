@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Application.Common.Interfaces.Behaviors;
+using FluentValidation;
 using MediatR.NotificationPublishers;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,16 +9,17 @@ namespace Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            var assembly = typeof(DependencyInjection).Assembly;
 
             services.AddMediatR(config =>
             {
                 config.RegisterServicesFromAssemblyContaining<ApplicationAssemblyReference>();
 
                 config.NotificationPublisher = new TaskWhenAllPublisher();
+
+                config.AddOpenBehavior(typeof(ValidationBehavior<,>));
             });
 
-            services.AddValidatorsFromAssembly(assembly);
+            services.AddValidatorsFromAssembly(ApplicationAssemblyReference.Assembly);
 
             return services;
         }

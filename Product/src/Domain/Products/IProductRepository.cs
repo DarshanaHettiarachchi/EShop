@@ -10,5 +10,5 @@ public interface IProductRepository
 
     void Remove(Product product);
 
-    Task<bool> IsSKUUnique(Sku sku);
+    Task<bool> IsSKUUnique(Sku? sku);
 }

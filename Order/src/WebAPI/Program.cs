@@ -5,6 +5,9 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+Log.Information("Order API starting");
+
 // Add services to the container.
 
 builder.Services.AddCarter();
