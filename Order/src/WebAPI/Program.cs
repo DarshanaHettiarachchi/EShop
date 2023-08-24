@@ -21,8 +21,11 @@ builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration);
 
+#pragma warning disable CA1305 // Specify IFormatProvider
 builder.Host.UseSerilog((context, configuration) =>
-    configuration.ReadFrom.Configuration(context.Configuration));
+    configuration.WriteTo.Console()
+    .ReadFrom.Configuration(context.Configuration));
+#pragma warning restore CA1305 // Specify IFormatProvider
 
 var app = builder.Build();
 
