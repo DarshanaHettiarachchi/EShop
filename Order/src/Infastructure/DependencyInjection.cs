@@ -19,6 +19,8 @@ namespace Infrastructure
         {
             services.AddHttpClient();
 
+            services.AddSingleton<IServiceBusMessageProcessor, ServiceBusMessageProcessor>();
+
             services.AddScoped<IOrderedProductService, OrderedProductService>();
 
             services.AddDbContext<ApplicationDbContext>(options =>

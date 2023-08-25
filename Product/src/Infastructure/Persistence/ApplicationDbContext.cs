@@ -30,12 +30,12 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext, IUnitOfWor
             .Where(e => e.GetDomainEvents().Count > 0)
             .SelectMany(e => e.GetDomainEvents());
 
-        var result = await base.SaveChangesAsync(cancellationToken);
-
         foreach (var domainEvent in domainEvents)
         {
             await _publisher.Publish(domainEvent, cancellationToken);
         }
+
+        var result = await base.SaveChangesAsync(cancellationToken);
 
         return result;
     }

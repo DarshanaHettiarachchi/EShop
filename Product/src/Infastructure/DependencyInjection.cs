@@ -1,5 +1,7 @@
-﻿using Application.Data;
+﻿using Application.Common.Interfaces;
+using Application.Data;
 using Domain.Products;
+using Infastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +28,11 @@ namespace Infrastructure
                 sp.GetRequiredService<ApplicationDbContext>());
 
             services.AddScoped<IProductRepository, ProductRepository>();
+
+            services.AddScoped<
+                IProductCreatedIntegrationEventPublisherService,
+                ProductCreatedIntegrationEventPublisherService
+             >();
 
             return services;
         }

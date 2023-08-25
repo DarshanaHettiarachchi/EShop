@@ -1,6 +1,7 @@
 ﻿using Application.Data;
 using Domain.Orders;
 using Domain.Primitives;
+using Domain.Products;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,19 +28,21 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext, IUnitOfWor
 
     public DbSet<LineItem> LineItems { get; set; }
 
+    public DbSet<Product> Products { get; set; }
+
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
         var domainEvents = ChangeTracker.Entries<Entity>()
             .Select(e => e.Entity)
-            .Where(e => e.GetDomainEvents().Count > 0)
+            .Where(e => e.GetDomainEvents().Count != 0)
             .SelectMany(e => e.GetDomainEvents());
-
-        var result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
         foreach (var domainEvent in domainEvents)
         {
-            await _publisher.Publish(domainEvent, cancellationToken).ConfigureAwait(false);
+            await _publisher.Publish(domainEvent, cancellationToken);
         }
+
+        var result = await base.SaveChangesAsync(cancellationToken);
 
         return result;
     }

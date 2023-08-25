@@ -1,18 +1,15 @@
-﻿using Domain.Orders;
-using Domain.Primitives;
+﻿using Domain.Primitives;
+using SharedKernel;
 
 namespace Domain.Products;
 
 public class Product : Entity
 {
-    public Product(ProductId id, string name, Money price, Sku sku)
+    public Product(ProductId id, string name, Money price)
     {
         Id = id;
         Name = name;
         Price = price;
-        Sku = sku;
-
-        Raise(new ProductCreatedDomainEvent(Guid.NewGuid(), id, name, price, sku));
     }
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
@@ -28,12 +25,9 @@ public class Product : Entity
 
     public Money Price { get; private set; }
 
-    public Sku Sku { get; private set; }
-
-    public void Update(string name, Money price, Sku sku)
+    public void Update(string name, Money price)
     {
         Name = name;
         Price = price;
-        Sku = sku;
     }
 }

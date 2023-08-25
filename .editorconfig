@@ -91,6 +91,7 @@ dotnet_diagnostic.CA1032.severity = silent
 dotnet_diagnostic.S3925.severity = silent
 dotnet_diagnostic.CA1812.severity = silent
 dotnet_diagnostic.S2365.severity = silent
+dotnet_diagnostic.S1450.severity = suggestion
 
 [*.{cs,vb}]
 #### Naming styles ####
@@ -157,3 +158,4 @@ dotnet_diagnostic.CA1852.severity = silent
 dotnet_diagnostic.CA1062.severity = silent
 dotnet_diagnostic.CA1002.severity = silent
 dotnet_diagnostic.CA1707.severity = suggestion
+dotnet_diagnostic.CA1848.severity = suggestion

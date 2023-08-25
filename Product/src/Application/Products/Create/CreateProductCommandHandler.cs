@@ -19,6 +19,7 @@ internal class CreateProductCommandHandler : IRequestHandler<CreateProductComman
 
     public async Task Handle(CreateProductCommand request, CancellationToken cancellationToken)
     {
+
         var product = new Product(
             new ProductId(Guid.NewGuid()),
             request.Name,

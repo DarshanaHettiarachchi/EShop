@@ -2,6 +2,7 @@ using Application;
 using Carter;
 using Infrastructure;
 using Serilog;
+using WebAPI.Builders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,8 @@ builder.Host.UseSerilog((context, configuration) =>
 #pragma warning restore CA1305 // Specify IFormatProvider
 
 var app = builder.Build();
+
+app.UseServiceBusMessageProcessor();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
