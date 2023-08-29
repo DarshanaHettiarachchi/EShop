@@ -52,7 +52,10 @@ namespace Infastructure.Services
 
         private Task ErrorHandler(ProcessErrorEventArgs args)
         {
-            _logger.LogError("Error processing Message");
+
+            _logger.LogError($"Error processing Message ");
+
+
             return Task.CompletedTask;
         }
 

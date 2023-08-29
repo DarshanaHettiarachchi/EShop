@@ -1,8 +1,9 @@
-﻿using SharedKernel;
+﻿using Domain.Primitives;
+using SharedKernel;
 
 namespace Domain.Orders;
 
-public class LineItem
+public class LineItem : Entity
 {
     internal LineItem(LineItemId id, OrderId orderId, ProductId productId, Money price)
     {

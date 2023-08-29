@@ -31,6 +31,7 @@ public class Order : Entity
 
     public Order Add(ProductId productId, Money price)
     {
+
         var lineItem = new LineItem(
             new LineItemId(Guid.NewGuid()),
             Id,
